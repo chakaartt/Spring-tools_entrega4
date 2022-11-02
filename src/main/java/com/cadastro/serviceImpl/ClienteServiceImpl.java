@@ -34,7 +34,7 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 	
 	
-	public Cliente updatecliente(Cliente cliente, long id_cliente) {
+	public Cliente updateCliente(Cliente cliente, long id_cliente) {
 
 		Cliente clienteExistente = clienteRepository.findById(id_cliente)
 				.orElseThrow(() -> new ResourceNotFoudException("Cliente", "id_cliente", id_cliente));

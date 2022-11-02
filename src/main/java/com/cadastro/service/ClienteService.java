@@ -14,5 +14,11 @@ public interface ClienteService {
 		void deleteCliente(long Id_cliente);
 	}
 
-	public List<Cliente> getAllCliente();
+	
+
+
+
+	
+
+	
 }

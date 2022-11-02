@@ -2,30 +2,34 @@ package com.cadastro.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cadastro.model.Cliente;
-import com.cadastro.service.ClienteService;
+import com.cadastro.serviceImpl.ClienteServiceImpl;
 
 @RestController
 @RequestMapping("api/cliente")
 @CrossOrigin("*")
 public class ClienteController {
 
+	@Autowired
+	private ClienteServiceImpl service;
+
+	// REQUEST TESTE
 	@GetMapping("/home")
 	public String hello() {
 		return "oi";
-	}
-
-	private ClienteService service;
-	
-	public ClienteController(ClienteService service) {
-		super();
-		this.service = service;
 	}
 
 	// localhost:8080/api/cliente
@@ -34,4 +38,35 @@ public class ClienteController {
 		List<Cliente> cliente = service.getAllCliente();
 		return ResponseEntity.ok().body(cliente);
 	}
+
+	// REQUEST POR ID
+	// localhost:8080/api/funcionarios/1
+	@GetMapping("{id_cliente}")
+	public ResponseEntity<Cliente> getClienteById_cliente(@PathVariable("id_cliente") long ClienteId) {
+		return new ResponseEntity<Cliente>(service.getClienteById(ClienteId), HttpStatus.OK);
+	}
+
+	// REQUEST PARA SALVAR
+	// localhost:8080/api/funcionarios
+	@PostMapping
+	public ResponseEntity<Cliente> saveCliente(@RequestBody Cliente cliente) {
+		return new ResponseEntity<Cliente>(service.saveCliente(cliente), HttpStatus.CREATED);
+	}
+
+	// REQUEST PARA ATUALIZAR
+	// localhost:8080/api/funcionarios/1
+	@PutMapping("{id_cliente}")
+	public ResponseEntity<Cliente> updateFuncionario(@PathVariable("id_cliente") long ClienteId,
+			@RequestBody Cliente cliente) {
+		return new ResponseEntity<Cliente>(service.updateCliente(cliente, ClienteId), HttpStatus.OK);
+	}
+
+	// REQUEST PARA DELETAR
+	@DeleteMapping("{id}")
+	public ResponseEntity<String> deleteCliente(@PathVariable("id_cliente") long ClienteId) {
+		service.deleteCliente(ClienteId);
+
+		return new ResponseEntity<String>("Funcionário deletado com sucesso.", HttpStatus.OK);
+	}
+
 }
