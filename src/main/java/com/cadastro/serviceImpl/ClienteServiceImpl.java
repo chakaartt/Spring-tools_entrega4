@@ -42,8 +42,8 @@ public class ClienteServiceImpl implements ClienteService {
 				.orElseThrow(() -> new ResourceNotFoundException("Cliente", "id_cliente", id_cliente));
 
 		clienteExistente.setNome_cliente(cliente.getNome_cliente());
-		clienteExistente.setNome_cliente(cliente.getEmail_cliente());
-		clienteExistente.setNome_cliente(cliente.getSenha_cliente());
+		clienteExistente.setEmail_cliente(cliente.getEmail_cliente());
+		clienteExistente.setSenha_cliente(cliente.getSenha_cliente());
 
 		clienteRepository.save(clienteExistente);
 		return clienteExistente;

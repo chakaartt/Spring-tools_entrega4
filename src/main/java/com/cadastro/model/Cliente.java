@@ -95,7 +95,7 @@ public class Cliente {
 	}
 
 	public String toString() {
-		return "Funcionario [id_cliente=" + id_cliente + ", nome_cliente=" + nome_cliente + ", email_cliente=" + email_cliente + ", senha_cliente="
+		return "Cliente [id_cliente=" + id_cliente + ", nome_cliente=" + nome_cliente + ", email_cliente=" + email_cliente + ", senha_cliente="
 				+ senha_cliente + "]";
 	}
 	

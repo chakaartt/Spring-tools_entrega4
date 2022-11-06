@@ -57,7 +57,7 @@ public class ClienteController {
 	// REQUEST PARA ATUALIZAR
 	// localhost:8080/api/cliente/1
 	@PutMapping("{id_cliente}")
-	public ResponseEntity<Cliente> updateFuncionario(@PathVariable("id_cliente") long ClienteId,
+	public ResponseEntity<Cliente> updateCliente(@PathVariable("id_cliente") long ClienteId,
 			@RequestBody Cliente cliente) {
 		return new ResponseEntity<Cliente>(service.updateCliente(cliente, ClienteId), HttpStatus.OK);
 	}
