@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cadastro.exception.ResourceNotFoudException;
+
+
+import com.cadastro.exception.ResourceNotFoundException;
 import com.cadastro.model.Cliente;
 import com.cadastro.repositories.ClienteRepository;
 import com.cadastro.service.ClienteService;
@@ -15,10 +17,6 @@ public class ClienteServiceImpl implements ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	public ClienteServiceImpl(ClienteRepository clienteRepository) {
-		super();
-		this.clienteRepository = clienteRepository;
-	}
 	
 	@Override
 	public Cliente saveCliente(Cliente cliente) {
@@ -33,7 +31,7 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public Cliente getClienteById(long id_cliente) {
 		return clienteRepository.findById(id_cliente)
-				.orElseThrow(() -> new ResourceNotFoudException("Cliente", "id_cliente", id_cliente));
+				.orElseThrow(() -> new ResourceNotFoundException("Cliente", "id_cliente", id_cliente));
 	}
 	
 	@Override
@@ -41,7 +39,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 		
 		Cliente clienteExistente = clienteRepository.findById(id_cliente)
-				.orElseThrow(() -> new ResourceNotFoudException("Cliente", "id_cliente", id_cliente));
+				.orElseThrow(() -> new ResourceNotFoundException("Cliente", "id_cliente", id_cliente));
 
 		clienteExistente.setNome_cliente(cliente.getNome_cliente());
 		clienteExistente.setNome_cliente(cliente.getEmail_cliente());
@@ -55,7 +53,8 @@ public class ClienteServiceImpl implements ClienteService {
 	public void deleteCliente(long id_cliente) {
 
 		clienteRepository.findById(id_cliente)
-				.orElseThrow(() -> new ResourceNotFoudException("cliente", "id_cliente", id_cliente));
+				.orElseThrow(() -> new ResourceNotFoundException("cliente", "id_cliente", id_cliente));
+		
 		clienteRepository.deleteById(id_cliente);
 	}
 	

@@ -13,15 +13,17 @@ import javax.persistence.Table;
 
 
 
+
+
 @Entity
-@Table(name = "cliente", schema = "agencia")
+@Table(name = "cliente")
 public class Cliente {
 
 	// variáveis//
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_cliente;
+	private long id_cliente;
 	
 	@Column(name = "nome_cliente")
 	private String nome_cliente;
@@ -43,11 +45,11 @@ public class Cliente {
 		this.email_cliente = email_cliente;
 		this.senha_cliente = senha_cliente;
 	}
-	public int getId_cliente() {
+	public long getId_cliente() {
 		return id_cliente;
 	}
 
-	public void setId_cliente(int id_cliente) {
+	public void setId_cliente(long id_cliente) {
 		this.id_cliente = id_cliente;
 	}
 

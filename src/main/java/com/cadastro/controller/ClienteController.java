@@ -41,7 +41,7 @@ public class ClienteController {
 	}
 
 	// REQUEST POR ID
-	// localhost:8080/api/funcionarios/1
+	// localhost:8080/api/cliente/1
 	@GetMapping("{id_cliente}")
 	public ResponseEntity<Cliente> getClienteById_cliente(@PathVariable("id_cliente") long ClienteId) {
 		return new ResponseEntity<Cliente>(service.getClienteById(ClienteId), HttpStatus.OK);
@@ -55,7 +55,7 @@ public class ClienteController {
 	}
 
 	// REQUEST PARA ATUALIZAR
-	// localhost:8080/api/funcionarios/1
+	// localhost:8080/api/cliente/1
 	@PutMapping("{id_cliente}")
 	public ResponseEntity<Cliente> updateFuncionario(@PathVariable("id_cliente") long ClienteId,
 			@RequestBody Cliente cliente) {
