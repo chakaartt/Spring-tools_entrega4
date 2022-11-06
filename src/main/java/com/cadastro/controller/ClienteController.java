@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cadastro.model.Cliente;
 import com.cadastro.serviceImpl.ClienteServiceImpl;
 
+
 @RestController
 @RequestMapping("api/cliente")
 @CrossOrigin("*")
@@ -47,7 +48,7 @@ public class ClienteController {
 	}
 
 	// REQUEST PARA SALVAR
-	// localhost:8080/api/funcionarios
+	// localhost:8080/api/cliente
 	@PostMapping
 	public ResponseEntity<Cliente> saveCliente(@RequestBody Cliente cliente) {
 		return new ResponseEntity<Cliente>(service.saveCliente(cliente), HttpStatus.CREATED);
@@ -62,7 +63,7 @@ public class ClienteController {
 	}
 
 	// REQUEST PARA DELETAR
-	@DeleteMapping("{id}")
+	@DeleteMapping("{id_cliente}")
 	public ResponseEntity<String> deleteCliente(@PathVariable("id_cliente") long ClienteId) {
 		service.deleteCliente(ClienteId);
 

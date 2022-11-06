@@ -2,6 +2,8 @@ package com.cadastro.model;
 
 
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
+
 
 @Entity
-@Data
 @Table(name = "cliente", schema = "agencia")
 public class Cliente {
 
@@ -30,7 +31,18 @@ public class Cliente {
 	
 	@Column(name = "senha_cliente")
 	private String senha_cliente;
-
+	
+	public Cliente() {
+		super();
+	}
+	
+	public Cliente(long id_cliente, String nome_cliente, String email_cliente, String senha_cliente) {
+		super();
+		this.id_cliente = (int) id_cliente;
+		this.nome_cliente = nome_cliente;
+		this.email_cliente = email_cliente;
+		this.senha_cliente = senha_cliente;
+	}
 	public int getId_cliente() {
 		return id_cliente;
 	}
@@ -63,6 +75,26 @@ public class Cliente {
 		this.senha_cliente = senha_cliente;
 	}
 
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id_cliente);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return id_cliente == other.id_cliente;
+	}
+
+	public String toString() {
+		return "Funcionario [id_cliente=" + id_cliente + ", nome_cliente=" + nome_cliente + ", email_cliente=" + email_cliente + ", senha_cliente="
+				+ senha_cliente + "]";
+	}
 	
 }
